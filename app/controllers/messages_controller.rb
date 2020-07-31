@@ -28,6 +28,8 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
+        notification = "'#{@message.title}' was sent" #  to #{@message.recipient}
+        TwilioTextMessenger.new(@message).call
         format.html { redirect_to @message, notice: 'Message was successfully created.' }
         format.json { render :show, status: :created, location: @message }
       else
