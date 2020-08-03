@@ -33,6 +33,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Twilio to send and receive SMS messages
 gem 'twilio-ruby'
 
+
+gem 'pry-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
