@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :remove_empty_recipients, only: [:create]
 
   # GET /messages
   # GET /messages.json
@@ -25,6 +26,7 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
+    error_messages = []
 
     respond_to do |format|
       if @message.save
@@ -71,6 +73,10 @@ class MessagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def message_params
-      params.require(:message).permit(:title, :body)
+      params.require(:message).permit(:title, :body, recipients: [])
+    end
+
+    def remove_empty_recipients
+      params[:message][:recipients] = params[:message][:recipients].reject(&:empty?)
     end
 end

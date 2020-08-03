@@ -21,6 +21,14 @@
     <%= form.text_area :body, id: :message_body %>
   </div>
 
+  <div class="field">
+    <%= form.label :recipients %>
+    <input type="text" name="message[recipients][]">
+    <input type="text" name="message[recipients][]">
+    <input type="text" name="message[recipients][]">
+    <input type="text" name="message[recipients][]">
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
